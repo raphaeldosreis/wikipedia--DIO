@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wikipédia Moderna</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      clip: rect(0 0 0 0);
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Wikipedia-logo.png/80px-Wikipedia-logo.png" alt="Logo da Wikipédia">
+      <span class="logo-text">Wikipédia</span>
+    </div>
+    <label for="search" class="visually-hidden">Pesquisar na Wikipédia</label>
+    <input type="text" id="search" class="search" placeholder="Pesquisar na Wikipédia...">
+  </header>
+
+  <div class="main-layout">
+    <aside class="panel left">
+      <h3 id="menu-title">Conteúdo</h3>
+      <nav aria-labelledby="menu-title">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="clubes.html">Clubes</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="panel content">
+      <h1>Campeonato Brasileiro de Futebol</h1>
+      <p>O Campeonato Brasileiro de Futebol, também conhecido como Campeonato Brasileiro, Brasileirão e Série A, é a liga brasileira de futebol profissional entre clubes do Brasil, sendo a principal competição futebolística no país. É por meio dela que são indicados os representantes brasileiros para a Copa Libertadores da América (juntamente com o campeão da Copa do Brasil). O campeão do torneio também conquista uma vaga na Supercopa do Brasil no ano seguinte.</p>
+      <p>O Campeonato Brasileiro é uma das ligas mais fortes do mundo, sendo a liga mais valiosa do continente americano e a sétima do mundo, contando entre seus integrantes habituais com a participação do maior número de clubes detentores de títulos de \"campeões mundiais\", com onze campeonatos ganhos por sete clubes, o segundo em termos de quantidade de títulos da Copa Libertadores da América, com vinte e três títulos conquistados por onze clubes e ainda outros três finalistas, atrás em títulos apenas da Primera División Argentina, com 25 títulos conquistados por oito clubes e mais dois clubes finalistas. Nos últimos anos, o Brasileirão vem sendo também classificado como um dos campeonatos nacionais mais valiosos do mundo. Por conta disso, a Série A do Campeonato Brasileiro é reconhecida como uma das ligas nacionais mais equilibradas do mundo. De acordo com o ranking da Federação Internacional de História e Estatísticas do Futebol (IFFHS, na sua sigla em inglês), é um dos cinco campeonatos mais fortes do mundo — no relatório de 2020, esteve somente atrás da Premier League inglesa. É ainda o torneio de futebol mais visto no continente americano e um dos mais expostos internacionalmente, transmitido para mais de 150 países.</p>
+    </main>
+
+    <aside class="panel right" id="video-section">
+      <h3 id="info-title">Informações</h3>
+      <div class="escudo-brasileirao">
+        <img src="Campeonato_Brasileiro_Série_A_logo.png" alt="Taça do Campeonato Brasileiro Série A" title="Taça do compeonato Brasileiro">
+        <p><strong>Organização:</strong> CBF</p>
+        <p><strong>Equipes:</strong> 20</p>
+        <p><strong>País:</strong> Brasil</p>
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/YcJUQonJIjo"
+            title="Abertura do Campeonato Brasileiro na Globo"
+            aria-label="Vídeo da vinheta de abertura do Campeonato Brasileiro pela Rede Globo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="visually-hidden">Este vídeo possui som. Ative as legendas no YouTube se necessário.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const videoSection = document.getElementById("video-section");
+    let hasSpoken = false;
+
+    function speakMessage(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'pt-BR';
+      speechSynthesis.speak(utter);
+    }
+
+    window.addEventListener('scroll', () => {
+      const rect = videoSection.getBoundingClientRect();
+      if (!hasSpoken && rect.top < window.innerHeight && rect.bottom > 0) {
+        speakMessage("Aqui tem um vídeo com a vinheta do Campeonato Brasileiro pela Rede Globo.");
+        hasSpoken = true;
+      }
+    });
+  </script>
+
+</body>
+</html>

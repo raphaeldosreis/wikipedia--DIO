@@ -1,0 +1,324 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #eef1f5, #cad4dc);
+  color: #222;
+}
+
+/* Cabeçalho */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+  margin-right: 12px;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.search {
+  padding: 10px 20px;
+  width: 250px;
+  font-size: 16px;
+  border-radius: 14px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Layout principal */
+.main-layout {
+  display: grid;
+  grid-template-areas:"left content right";
+  grid-template-columns: 200px 1fr 300px;
+  gap: 50px;
+  padding: 30px;
+}
+
+
+/* Painéis com vidro  */
+.panel {
+  flex: 1 1 300px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  min-width: 200px;
+  margin-bottom: 10px;
+}
+
+/* Efeito de destaque ao passar o mouse */
+.panel:hover {
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Conteúdo das colunas */
+.left ul {
+  list-style: none;
+  grid-area: left;
+  margin-top: 10px;
+}
+
+.left ul li {
+  margin: 10px 0;
+}
+
+.left a {
+  color: #0645AD;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.content h1 {
+  font-size: 24px;
+  grid-area: content;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.right {
+  text-align: center;
+  grid-area: right;
+}
+
+
+.escudo-brasileirao img {
+  max-width: 250px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.right p {
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+/* video- youtube */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;      
+  height: 0;
+  margin-top: 18px;
+  border-radius: 18px;         
+  background: rgba(255,255,255,0.18);  
+  backdrop-filter: blur(18px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;  
+  border-radius: 18px;      
+}
+.club-grid  {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));  
+    gap: 18px 14px;
+    padding: 20px 22px;
+    justify-items: center;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .club-grid  img {
+      width: 64px;               
+      height: 64px;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,.12));
+      transition: transform .15s ease;
+  }
+  
+  
+  .escudo-times img:hover {
+    transform: scale(1.1);
+  }
+  
+
+/* Responsivo */
+
+@media (max-width: 992px) {
+  .main-layout {
+    grid-template-areas:"left""content""right";
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .search {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logo-text {
+    font-size: 22px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  
+  
+}
+.club-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); 
+  gap: 18px 14px;             
+  padding: 20px 22px;
+  justify-items: center;      
+}
+
+/* --- invólucro de cada time  --- */
+
+.club-grid .team {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ícone */
+
+.club-grid .team img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  transition: transform .25s ease;
+}
+
+.club-grid .team:hover img {
+  transform: scale(1.25);     
+}
+
+/* rótulo que aparece no hover */
+
+.club-grid .team::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: -1.8rem;            
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(0,0,0,.8);
+  color: #fff;
+  font-size: .75rem;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.club-grid .team:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+ 
+.glass-table {
+  width: 100%;
+  max-width: 900px;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  overflow-x: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-table h3 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.glass-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align:left,center;
+  font-size: 14px;
+  color: #222;
+}
+
+.glass-table thead {
+  background-color: rgba(0, 0, 80, 0.85);
+  color: white;
+}
+
+.glass-table th,
+.glass-table td {
+  padding: 10px 6px;
+  border: 1px solid rgba(29, 28, 28, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.glass-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.01);
+  position: relative;
+  z-index: 1;
+}
+
+.glass-table tbody tr:last-child td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-table td img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin-right: 6px;
+  vertical-align: middle;
+}
